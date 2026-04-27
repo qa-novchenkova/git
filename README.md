@@ -114,6 +114,7 @@ git remote set-url origin https://github.com/qa-novchenkova/example.git   # Из
 git remote remove origin                                      # Удалить существующий remote origin
 git remote add origin https://github.com/qa-novchenkova/example.git       # Повторно добавить remote origin с новым URL
 ```
+---
 
 **Ситуация:** `Your local changes to the following files would be overwritten`  
 **Причина:** локальные изменения конфликтуют с изменениями, которые Git пытается подтянуть из удалённого репозитория.  
@@ -124,6 +125,7 @@ git stash                                                     # Временно
 git pull                                                      # Получить и применить изменения из удалённого репозитория
 git stash pop                                                 # Вернуть ранее сохранённые изменения из stash
 ```
+---
 
 **Ситуация:** `fatal: detected dubious ownership in repository at ...`  
 **Причина:** Git считает папку репозитория или submodule небезопасной из-за владельца директории.  
@@ -132,6 +134,7 @@ git stash pop                                                 # Вернуть �
 ```bash
 git config --global --add safe.directory "D:/qa/example"      # Добавить путь к репозиторию в список доверенных директорий
 ```
+---
 
 **Ситуация:** `git pull failed unknown index entry format ...`  
 **Причина:** повреждён файл индекса `.git/index`.  
@@ -141,6 +144,7 @@ git config --global --add safe.directory "D:/qa/example"      # Добавить
 rm .git/index                                                 # Удалить повреждённый индекс Git
 git reset                                                     # Пересобрать индекс и восстановить его состояние
 ```
+---
 
 **Ситуация:** коммит был сделан не в ту ветку.  
 **Решение:** найти нужный коммит по его hash и перенести его в нужную ветку с помощью `git cherry-pick`.
@@ -152,8 +156,9 @@ git cherry-pick <commit_hash>                                 # Применит
 git cherry-pick --continue                                    # Продолжить cherry-pick после разрешения конфликта
 git cherry-pick --abort                                       # Отменить cherry-pick при необходимости
 ```
+---
 
-## Дополнительные ситуации
+## Дополнительно
 
 **Ситуация:** открылся редактор с файлом `.git/MERGE_MSG`  
 **Причина:** Git ожидает подтверждение merge-коммита после слияния.  
@@ -162,6 +167,7 @@ git cherry-pick --abort                                       # Отменить
 ```bash
 git merge --abort                                             # Отменить текущее слияние веток
 ```
+---
 
 **Ситуация:** файл был изменён или добавлен в staging area по ошибке.  
 **Решение:** использовать `git restore` для отмены изменений или `git restore --staged`, чтобы убрать файл из индекса.
@@ -170,6 +176,7 @@ git merge --abort                                             # Отменить
 git restore README.md                                         # Отменить локальные изменения в конкретном файле
 git restore --staged README.md                                # Убрать файл из staging area, не удаляя локальные изменения
 ```
+---
 
 **Ситуация:** нужно быстро проверить, в какой ветке ведётся работа и есть ли незакоммиченные изменения.  
 **Решение:** использовать `git branch` и `git status`.
